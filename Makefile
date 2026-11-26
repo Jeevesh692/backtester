@@ -4,4 +4,4 @@ build:
 run:
 	docker run --rm backtester
 test:
-	docker compose run --rm tests
+	docker compose run --rm -T tests
