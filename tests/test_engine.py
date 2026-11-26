@@ -24,6 +24,7 @@ def test_always_long_entry_and_exit(prices):
     assert len(trades) == 1
     assert trades[0]["entry_price"] == pytest.approx(1.1010)
     assert trades[0]["exit_price"] == pytest.approx(1.1035)
+    assert trades[0]["pnl"] == pytest.approx(246)
 
 
 
@@ -40,6 +41,9 @@ def test_engine_sample(prices):
     assert trades[0]["pnl"] == pytest.approx(296)
     assert trades[0]["entry_price"] == pytest.approx(1.1020)
     assert trades[0]["exit_price"] == pytest.approx(1.1050)
+    assert list(equity) == pytest.approx([10000,10000,10050,10250,10296,10296])
+    assert trades[0]["entry_time"] == prices.loc[2, "time"]
+    assert trades[0]["exit_time"] == prices.loc[4, "time"]
 
 def test_entry_uses_next_bar_open_not_signal_bar_close(prices):
     """Guards against look-ahead: a signal on bar t fills at bar t+1's open, never bar t's close."""

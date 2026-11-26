@@ -211,3 +211,11 @@
 - Running from the wrong folder (`tests/` instead of the repo root).
 - Wrong YAML key names, missing `- ` on list items, missing top-level `volumes:`, laptop path where a container path goes.
 - Called `gethostbyname()` without the hostname argument.
+
+## Step 14 · Mutation testing
+- mutmut score: 91/109 killed (83%). First run was 72/109 (66%).
+- Survivors were all in `engine.py`: paths that ran but weren't asserted.
+- Killed them with asserts on the forced-close P&L, the full equity curve, and entry/exit times.
+- Newer mutmut: `source_paths` (one per line), and `also_copy` must include `pytest.ini` and the non-mutated package files.
+- `testpaths = tests` in pytest.ini stops pytest collecting the copies inside `mutants/`.
+- After changing tests, `rm -rf mutants` before `mutmut run`, or results can be stale.
