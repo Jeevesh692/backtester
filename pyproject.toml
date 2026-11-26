@@ -1,0 +1,14 @@
+[project]
+name = "backtester"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=3.1.1",
+]
+description = "Small EURUSD backtester with next-bar-open fills and a tested core."
+
+[dependency-groups]
+dev = [
+    "mutmut>=3.8.1",
+    "pytest>=9.2.0",
+]
