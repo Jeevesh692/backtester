@@ -4,12 +4,12 @@ import pytest
 import pandas as pd
 
 
-def test_load_prices_names_missing_column(tmp_path):
+def test_load_prices_names_missing_column(tmp_path,prices):
     """load_prices raises ValueError naming the missing column when 'close' is absent."""
-    csv_file = tmp_path / "bad.csv"         
-    csv_file.write_text("time,open,high,low\n2024-01-01 00:00:00,1.1,1.2,1.0\n")
+    path = tmp_path /"prices.csv"        
+    prices.drop(columns="close").to_csv(path, index=False)
     with pytest.raises(ValueError, match="close"):
-        load_prices(csv_file)
+        load_prices(path)
             
 
 
